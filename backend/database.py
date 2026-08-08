@@ -1,8 +1,11 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
 
+load_dotenv()
 
-DATABASE_URL = "postgresql://neondb_owner:npg_v6upVmBF2OSt@ep-bitter-darkness-aypsqnzz.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL = os.getenv("DATABASE")
 
 engine = create_engine(DATABASE_URL)
 
