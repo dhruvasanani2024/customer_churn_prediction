@@ -7,8 +7,18 @@ from sqlalchemy.orm import Session
 from database import get_db
 from database import engine, Base
 from models import PredictionHistory
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title = "Customer Churn Prediction")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model = joblib.load("../Customer_Churn_model.pkl")
 
